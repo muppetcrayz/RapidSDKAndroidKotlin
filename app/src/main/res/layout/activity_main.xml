@@ -7,13 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello world!"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+    <com.dubtel.mobileapikotlin.BarChartView
+        android:id="@+id/bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="@dimen/bar_chart_grid_padding"
+        android:spacing="@dimen/bar_chart_column_spacing"/>
 
     <Button
         android:id="@+id/log_out_button"

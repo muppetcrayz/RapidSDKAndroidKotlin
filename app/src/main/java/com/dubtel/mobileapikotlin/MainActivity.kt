@@ -25,6 +25,16 @@ import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
 
+import android.animation.ValueAnimator
+import android.content.Context
+import android.content.res.Resources
+import android.content.res.TypedArray
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.support.v4.content.ContextCompat
+import android.util.AttributeSet
+import android.view.animation.AccelerateInterpolator
+
 class MainActivity : AppCompatActivity() {
 
     private var stat = ""
@@ -58,33 +68,6 @@ class MainActivity : AppCompatActivity() {
             val t1 = Thread(Runnable {
                 try {
                     try {
-                        // Load CAs from an InputStream
-                        val cf = CertificateFactory.getInstance("X.509")
-
-                        val fis = resources.openRawResource(R.raw.mycert)
-
-                        val caInput = BufferedInputStream(fis)
-                        val ca: Certificate
-                        try {
-                            ca = cf.generateCertificate(caInput)
-                        } finally {
-                            caInput.close()
-                        }
-
-                        // Create a KeyStore containing our trusted CAs
-                        val keyStoreType = KeyStore.getDefaultType()
-                        val keyStore = KeyStore.getInstance(keyStoreType)
-                        keyStore.load(null, null)
-                        keyStore.setCertificateEntry("ca", ca)
-
-                        // Create a TrustManager that trusts the CAs in our KeyStore
-                        val tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm()
-                        val tmf = TrustManagerFactory.getInstance(tmfAlgorithm)
-                        tmf.init(keyStore)
-
-                        // Create an SSLContext that uses our TrustManager
-                        val context = SSLContext.getInstance("TLS")
-                        context.init(null, tmf.trustManagers, null)
 
                         val postString = "session_id=$mSessionID&user_id=$mUserID"
                         val postData = postString.toByteArray(StandardCharsets.UTF_8)
@@ -93,7 +76,6 @@ class MainActivity : AppCompatActivity() {
                         val url = URL(authenticateString)
                         val urlConnection = url.openConnection() as HttpsURLConnection
                         urlConnection.doOutput = true
-                        urlConnection.sslSocketFactory = context.socketFactory
                         urlConnection.setRequestProperty("Authorization", "Basic " + SharedData.instance.token)
                         urlConnection.requestMethod = "POST"
 

@@ -97,35 +97,6 @@ class SignUpActivity : AppCompatActivity() {
             val t1 = Thread(Runnable {
                 try {
                     try {
-                        // Load CAs from an InputStream
-                        val cf = CertificateFactory.getInstance("X.509")
-
-                        // I/System.out: java.lang.ClassCastException: android.content.res.AssetManager$AssetInputStream cannot be cast to java.io.FileInputStream
-
-                        val fis = resources.openRawResource(R.raw.mycert)
-
-                        val caInput = BufferedInputStream(fis)
-                        val ca: Certificate
-                        try {
-                            ca = cf.generateCertificate(caInput)
-                        } finally {
-                            caInput.close()
-                        }
-
-                        // Create a KeyStore containing our trusted CAs
-                        val keyStoreType = KeyStore.getDefaultType()
-                        val keyStore = KeyStore.getInstance(keyStoreType)
-                        keyStore.load(null, null)
-                        keyStore.setCertificateEntry("ca", ca)
-
-                        // Create a TrustManager that trusts the CAs in our KeyStore
-                        val tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm()
-                        val tmf = TrustManagerFactory.getInstance(tmfAlgorithm)
-                        tmf.init(keyStore)
-
-                        // Create an SSLContext that uses our TrustManager
-                        val context = SSLContext.getInstance("TLS")
-                        context.init(null, tmf.trustManagers, null)
 
                         val postString = "firstname=$mFirstName&lastname=$mLastName&email=$mEmail&password=$mPassword"
                         val postData = postString.toByteArray(StandardCharsets.UTF_8)
@@ -134,7 +105,6 @@ class SignUpActivity : AppCompatActivity() {
                         val url = URL(authenticateString)
                         val urlConnection = url.openConnection() as HttpsURLConnection
                         urlConnection.doOutput = true
-                        urlConnection.sslSocketFactory = context.socketFactory
                         urlConnection.setRequestProperty("Authorization", "Basic " + SharedData.instance.token)
                         urlConnection.requestMethod = "POST"
 

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Bar Chart -->
+    <color name="grid_color">@android:color/black</color>
+    <color name="guide_color">@android:color/darker_gray</color>
+    <color name="bar_color">@color/colorAccent</color>
+
 </resources>
