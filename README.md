@@ -15,5 +15,6 @@ Firstly, you must change the `apiKey` and `apiSecret` located in the `SharedData
 
 ## Authors
 * Sage Conger - [sagealessandra](https://github.com/sagealessandra)
+* John Opoku - [johnopoku](https://github.com/johnopoku)
 
 Powered by Dubtel Consulting, LLC.
