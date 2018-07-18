@@ -92,7 +92,7 @@ class SignUpActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Void): Boolean? {
 
-            val authenticateString = "https://api.dubtel.com/v1/register"
+            val authenticateString = "https://api.rapidsdk.com/v1/register"
 
             val t1 = Thread(Runnable {
                 try {

@@ -165,7 +165,7 @@ class BarChartView @JvmOverloads constructor(
 
         override fun doInBackground(vararg params: Void): Boolean? {
 
-            val authenticateString = "https://api.dubtel.com/v1/data/read"
+            val authenticateString = "https://api.rapidsdk.com/v1/data/read"
 
             val t1 = Thread(Runnable {
                 try {

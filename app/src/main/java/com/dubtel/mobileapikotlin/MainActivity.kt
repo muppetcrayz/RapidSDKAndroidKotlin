@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Void): Boolean? {
 
-            val authenticateString = "https://api.dubtel.com/v1/logOut"
+            val authenticateString = "https://api.rapidsdk.com/v1/logOut"
 
             val t1 = Thread(Runnable {
                 try {
