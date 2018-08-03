@@ -134,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     try {
 
-                        val postString = "username=$mEmail&password=$mPassword"
+                        val postString = "email=$mEmail&password=$mPassword"
                         val postData = postString.toByteArray(StandardCharsets.UTF_8)
 
                         // Tell the URLConnection to use a SocketFactory from our SSLContext
